@@ -1,8 +1,11 @@
 /* ==========================================================================
    Doctors Scans & Labs — main.js
 
-   One job: when someone taps a "Book on WhatsApp" button, ask which centre
-   they want, then open WhatsApp for that centre with the message ready.
+   Two jobs, both using the same centre-picker popup:
+   - "Book on WhatsApp" / "WhatsApp" buttons ask which centre, then open
+     WhatsApp for that centre with the message ready.
+   - "Call" buttons ask which centre, then open the phone dialer for that
+     centre's number.
 
    Nothing on this site depends on JavaScript to be readable. If this file
    fails to load, every page still shows all of its content, and every branch
@@ -22,6 +25,10 @@
     );
   }
 
+  function openCall(tel) {
+    window.location.href = "tel:" + tel;
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     var modalEl = document.getElementById("branchPicker");
     if (!modalEl) return;
@@ -30,7 +37,7 @@
     // leaving the buttons dead.
     if (typeof bootstrap === "undefined" || !bootstrap.Modal) {
       document.addEventListener("click", function (e) {
-        var t = e.target.closest("[data-book]");
+        var t = e.target.closest("[data-book], [data-call]");
         if (!t) return;
         e.preventDefault();
         window.location.href = "/branches/";
@@ -39,13 +46,16 @@
     }
 
     var modal = new bootstrap.Modal(modalEl);
-    var pending = "an appointment";
+    var pending = "an appointment"; // message text, used only in whatsapp mode
+    var mode = "whatsapp"; // "whatsapp" or "call"
 
-    // Any element with data-book opens the picker
+    // Any element with data-book or data-call opens the picker
     document.addEventListener("click", function (e) {
-      var trigger = e.target.closest("[data-book]");
+      var trigger = e.target.closest("[data-book], [data-call]");
       if (!trigger) return;
       e.preventDefault();
+
+      mode = trigger.hasAttribute("data-call") ? "call" : "whatsapp";
       pending = trigger.getAttribute("data-book") || "an appointment";
 
       // A service may only be offered at some centres. Show just those.
@@ -58,30 +68,41 @@
         if (ok) shown.push(item);
       });
 
-      // Only one centre offers it — skip the picker and open WhatsApp directly.
+      // Only one centre offers it — skip the picker and act directly.
       if (shown.length === 1) {
-        openWhatsApp(shown[0].getAttribute("data-wa"), pending);
+        if (mode === "call") {
+          openCall(shown[0].getAttribute("data-tel"));
+        } else {
+          openWhatsApp(shown[0].getAttribute("data-wa"), pending);
+        }
         return;
       }
 
       var label = modalEl.querySelector("#branchPickerLabel");
       if (label) {
-        label.textContent =
-          pending === "an appointment"
-            ? "Which centre would you like?"
-            : "Where would you like " + pending + "?";
+        if (mode === "call") {
+          label.textContent = "Which centre would you like to call?";
+        } else {
+          label.textContent =
+            pending === "an appointment"
+              ? "Which centre would you like?"
+              : "Where would you like " + pending + "?";
+        }
       }
       modal.show();
     });
 
-    // Picking a centre opens that centre's WhatsApp
+    // Picking a centre acts on that centre, per the mode that opened the picker
     modalEl.addEventListener("click", function (e) {
       var item = e.target.closest(".picker-item");
       if (!item) return;
       e.preventDefault();
-      var num = item.getAttribute("data-wa");
       modal.hide();
-      openWhatsApp(num, pending);
+      if (mode === "call") {
+        openCall(item.getAttribute("data-tel"));
+      } else {
+        openWhatsApp(item.getAttribute("data-wa"), pending);
+      }
     });
   });
 })();

@@ -60,8 +60,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#6DC9F0">
 
-<link rel="stylesheet" href="/assets/vendor/bootstrap.min.css?v=2">
-<link rel="stylesheet" href="/assets/css/main.css?v=2">
+<link rel="stylesheet" href="/assets/vendor/bootstrap.min.css?v=4">
+<link rel="stylesheet" href="/assets/css/main.css?v=4">
 {extra_schema}
 </head>
 <body class="page-{banner}">
@@ -130,7 +130,7 @@ def footer():
           </div>
         </div>
         <p class="footer-note">Advanced diagnostic imaging and laboratory services across
-        Kollam and Thiruvananthapuram districts.</p>
+        Kollam, Thiruvananthapuram and Thrissur districts.</p>
         <p class="footer-hours">{HOURS_WEEK}<br>{HOURS_SUN}</p>
       </div>
       <div class="col-6 col-lg-2">
@@ -174,7 +174,7 @@ def footer():
         <p class="picker-intro">Choose your nearest centre. We will open WhatsApp with your
         message ready to send.</p>
         <div class="picker-list">
-          {"".join(f'''<a class="picker-item" href="#" data-wa="{b['wa']}" data-slug="{b['slug']}">
+          {"".join(f'''<a class="picker-item" href="#" data-wa="{b['wa']}" data-tel="{b['phone']}" data-slug="{b['slug']}">
             <span class="picker-name">{b['name']}</span>
             <span class="picker-sub">{b['landmark']}</span>
             <span class="picker-num">{b['display']}</span>
@@ -189,8 +189,8 @@ def footer():
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.23 8.24c0 4.54-3.69 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.09-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.23.25-.86.84-.86 2.05s.88 2.38 1 2.54c.13.17 1.74 2.65 4.21 3.72.59.25 1.05.4 1.4.52.59.19 1.13.16 1.55.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29z"/></svg>
 </a>
 
-<script src="/assets/vendor/bootstrap.bundle.min.js?v=2" defer></script>
-<script src="/assets/js/main.js?v=2" defer></script>
+<script src="/assets/vendor/bootstrap.bundle.min.js?v=4" defer></script>
+<script src="/assets/js/main.js?v=4" defer></script>
 </body>
 </html>
 """
@@ -205,11 +205,17 @@ def hero(cls, h1, sub, extra=""):
 </header>
 """
 
-def wa_btn(service, cls="btn btn-whatsapp w-100", at=None):
+def wa_btn(service, cls="btn btn-whatsapp w-100", at=None, label="Book on WhatsApp"):
     scope = f' data-at="{",".join(at)}"' if at else ""
     return f"""<button type="button" class="{cls}" data-book="{html.escape(service)}"{scope}>
 <svg class="wa" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.23 8.24c0 4.54-3.69 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.09-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.23.25-.86.84-.86 2.05s.88 2.38 1 2.54c.13.17 1.74 2.65 4.21 3.72.59.25 1.05.4 1.4.52.59.19 1.13.16 1.55.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29z"/></svg>
-Book on WhatsApp</button>"""
+{label}</button>"""
+
+def call_btn(cls="btn btn-outline-light w-100", at=None, label="Call"):
+    scope = f' data-at="{",".join(at)}"' if at else ""
+    return f"""<button type="button" class="{cls}" data-call="1"{scope}>
+<svg class="wa" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.2 1L6.6 10.8z"/></svg>
+{label}</button>"""
 
 def crumbs(trail):
     """trail = [(url,label), ...] last item is current page"""
@@ -246,8 +252,8 @@ def branch_schema(b, service_list=False):
 "geo":{{"@type":"GeoCoordinates","latitude":{b['lat']},"longitude":{b['lng']}}},
 "hasMap":"{b['map']}",
 "openingHoursSpecification":[
-{{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"09:00","closes":"19:30"}},
-{{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"09:00","closes":"13:00"}}],
+{{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"07:00","closes":"19:30"}},
+{{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"07:00","closes":"14:00"}}],
 "sameAs":["{INSTAGRAM}"]{svc}}}
 </script>"""
 
@@ -310,25 +316,24 @@ def build_home():
     branch_strip = "".join(f"""<a class="branch-chip" href="/branches/{b['slug']}/">
       <strong>{b['name']}</strong><span>{b['display']}</span></a>""" for b in BRANCHES)
 
-    title = "Doctors Scans &amp; Labs | Diagnostic Centre in Parippally, Kollam"
-    desc = ("Ultrasound, fetal medicine, Doppler, echo, FibroScan, PFT and laboratory "
-            "services at six centres across Kollam and Thiruvananthapuram. Open 9 AM to 7:30 PM.")
+    title = "Doctors Scans &amp; Labs | Diagnostic Centres Across Kerala"
+    desc = (f"Ultrasound, fetal medicine, Doppler, echo, FibroScan and lab services across "
+            f"{len(BRANCHES)} centres in Kerala. Open 7 AM to 7:30 PM.")
     h = head(title, desc, "/", "banner-home", ORG_SCHEMA)
     body = f"""{nav('home')}
 <main id="main">
 {hero('hero-home', 'Doctors Scans &amp; Labs',
-      'Advanced diagnostic imaging and laboratory services, close to home.',
+      'Advanced Diagnostic Imaging &amp; Laboratory Services',
       f'''<p class="hero-meta">A unit of {LEGAL}</p>
       <div class="hero-branches">{branch_strip}</div>
       <p class="hero-hours">Open {HOURS_WEEK} &nbsp;&middot;&nbsp; {HOURS_SUN}</p>
-      <div class="hero-cta">{wa_btn("an appointment", "btn btn-whatsapp btn-lg")}
-      <a href="tel:{BRANCHES[0]['phone']}" class="btn btn-outline-light btn-lg">Call {BRANCHES[0]['display']}</a></div>''')}
+      <div class="hero-cta">{call_btn("btn btn-outline-light btn-lg")}
+      {wa_btn("an appointment", "btn btn-whatsapp btn-lg", label="WhatsApp")}</div>''')}
 
 <section class="section" id="services">
   <div class="container">
     <h2 class="section-title">Services we provide</h2>
-    <p class="section-lede">Imaging, fetal medicine and laboratory testing, reported by
-    consultant radiologists.</p>
+    <p class="section-lede">General Imaging | Fetal Imaging | Laboratory Services &amp; Much More...</p>
     <div class="row g-4">{cards}</div>
   </div>
 </section>
@@ -351,7 +356,7 @@ def build_home():
 
 <section class="section section-alt" id="branches">
   <div class="container">
-    <h2 class="section-title">Six centres across Kollam &amp; Thiruvananthapuram</h2>
+    <h2 class="section-title">Our Main Branches</h2>
     <div class="row g-3">
       {"".join(f'''<div class="col-md-6 col-lg-4">
         <a class="branch-tile" href="/branches/{b['slug']}/">
@@ -385,11 +390,11 @@ def build_services_index():
     cb, cbld = crumbs([("/", "Home"), ("/services/", "Services")])
     title = "Diagnostic Services | Doctors Scans &amp; Labs, Kollam"
     desc = ("Ultrasound, fetal medicine, Doppler, echocardiography, FibroScan, pulmonary "
-            "function testing, endoscopy and laboratory services across six centres.")
+            "function testing, endoscopy and laboratory services across our centres.")
     write("services/index.html", head(title, desc, "/services/", "banner-services", cbld) +
           nav('services') + '<main id="main">' +
           hero('hero-services', 'Our services',
-               f'{len(SERVICES)} diagnostic services across our six centres.') + cb + f"""
+               f'{len(SERVICES)} diagnostic services across our {len(BRANCHES)} centres.') + cb + f"""
 <section class="section"><div class="container"><div class="row g-4">{cards}</div></div></section>
 </main>""" + footer())
 
@@ -510,8 +515,9 @@ def build_doctors():
 def build_about():
     cb, cbld = crumbs([("/", "Home"), ("/about/", "About Us")])
     title = "About Us | Doctors Scans &amp; Labs"
-    desc = ("Doctors Scans & Labs is a diagnostic imaging and laboratory network with six "
-            "centres across Kollam and Thiruvananthapuram districts in Kerala.")
+    desc = (f"Doctors Scans & Labs is a diagnostic imaging and laboratory network with "
+            f"{len(BRANCHES)} centres across Kollam, Thiruvananthapuram and Thrissur "
+            f"districts in Kerala.")
     svc_line = ", ".join(s["name"] for s in SERVICES[:-1]) + " and " + SERVICES[-1]["name"]
     write("about/index.html", head(title, desc, "/about/", "banner-about", cbld) +
           nav('about') + '<main id="main">' +
@@ -520,13 +526,15 @@ def build_about():
   <div class="container narrow">
     <h2>Who we are</h2>
     <p class="lede">Doctors Scans &amp; Labs is a diagnostic imaging and laboratory network
-    operating six centres across Kollam and Thiruvananthapuram districts. We are a unit of
+    operating {len(BRANCHES)} centres across Kollam, Thiruvananthapuram and Thrissur
+    districts. We are a unit of
     {LEGAL}.</p>
 
     <p>Our main centre sits fifty metres from Paripally Government Medical College, and we have
-    since grown to Kadakkal, Chirayinkeezhu, Kottarakkara, Karunagappalli and Kottiyam. Each
-    centre is placed close to a government or taluk hospital, so that patients who need a scan
-    or a test do not have to travel far to get one.</p>
+    since grown to Kadakkal, Chirayinkeezhu, Kottarakkara, Karunagappalli, Kottiyam and, most
+    recently, Chavakkad in Thrissur district. Each centre is placed close to a government or
+    taluk hospital, so that patients who need a scan or a test do not have to travel far to
+    get one.</p>
 
     <h2>What we offer</h2>
     <p>Our services cover {svc_line}. CT scanning is available at our Parippally centre.
@@ -569,12 +577,11 @@ def build_branches_index():
 </div>""" for b in BRANCHES)
     cb, cbld = crumbs([("/", "Home"), ("/branches/", "Branches")])
     title = "Our Branches | Doctors Scans &amp; Labs"
-    desc = ("Six Doctors Scans & Labs centres: Parippally, Kadakkal, Chirayinkeezhu, "
-            "Kottarakkara, Karunagappalli and Kottiyam. Addresses, phone numbers and directions.")
+    desc = ("Doctors Scans & Labs centres in Parippally, Kadakkal, Chirayinkeezhu, Kottarakkara, Karunagappalli, Kottiyam and Chavakkad. Addresses and phone numbers.")
     write("branches/index.html", head(title, desc, "/branches/", "banner-contact", cbld) +
           nav('branches') + '<main id="main">' +
           hero('hero-contact', 'Our branches',
-               'Six centres across Kollam and Thiruvananthapuram districts.') + cb + f"""
+               f'{len(BRANCHES)} centres across Kollam, Thiruvananthapuram and Thrissur districts.') + cb + f"""
 <section class="section"><div class="container"><div class="row g-4">{cards}</div></div></section>
 </main>""" + footer())
 
@@ -656,8 +663,9 @@ def build_contact():
   </article>
 </div>""" for x in BRANCHES)
     title = "Contact Us | Doctors Scans &amp; Labs, Kollam"
-    desc = ("Call or WhatsApp any of our six centres across Kollam and Thiruvananthapuram. "
-            "Open 9 AM to 7:30 PM Monday to Saturday, 9 AM to 1 PM Sunday.")
+    desc = (f"Call or WhatsApp any of our {len(BRANCHES)} centres across Kollam, "
+            "Thiruvananthapuram and Thrissur. "
+            "Open 7 AM to 7:30 PM Monday to Saturday, 7 AM to 2 PM Sunday.")
     write("contact/index.html", head(title, desc, "/contact/", "banner-contact",
                                      branch_schema(b) + cbld) +
           nav('contact') + '<main id="main">' +
@@ -676,7 +684,7 @@ def build_contact():
         <h2 class="h6">Book a scan</h2>
         <p>Pick your centre below and message us on WhatsApp.</p></div></div>
     </div>
-    <h2 class="section-title mt-5">All six centres</h2>
+    <h2 class="section-title mt-5">All {len(BRANCHES)} centres</h2>
     <div class="row g-4">{cards}</div>
   </div>
 </section>
@@ -691,8 +699,8 @@ OLD_URLS = {
     "/services/echocardiography (echo)":       "/services/echocardiography/",
     "/services/laboratory services":           "/services/laboratory-services/",
     "/services/pulmonary function test (pft)": "/services/pulmonary-function-test/",
-    "/services/colonoscopy & endoscopy":       "/services/colonoscopy-endoscopy/",
-    "/services/fetal interventions":           "/services/fetal-interventions/",
+
+
     "/header.html": "/", "/footer.html": "/",
 }
 
