@@ -184,6 +184,9 @@ def footer():
         <button type="button" class="btn btn-whatsapp btn-sm" data-book="an appointment">
           {icon('chat')}Book on WhatsApp</button>
         <p class="footer-social">
+          <a href="{FACEBOOK}" rel="noopener" aria-label="Doctors Scans on Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true" width="22" height="22"><path fill="currentColor" d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>
+          </a>
           <a href="{INSTAGRAM}" rel="noopener" aria-label="Doctors Scans on Instagram">
             <svg viewBox="0 0 24 24" aria-hidden="true" width="22" height="22"><path fill="currentColor" d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 6.32a3.52 3.52 0 1 0 0 7.04 3.52 3.52 0 0 0 0-7.04zm0 5.81a2.29 2.29 0 1 1 0-4.58 2.29 2.29 0 0 1 0 4.58zm4.48-5.95a.82.82 0 1 1-1.64 0 .82.82 0 0 1 1.64 0z"/></svg>
           </a>
@@ -281,7 +284,7 @@ def branch_schema(b, service_list=False):
 "openingHoursSpecification":[
 {{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"07:00","closes":"19:30"}},
 {{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"07:00","closes":"14:00"}}],
-"sameAs":["{INSTAGRAM}"]{svc}}}
+"sameAs":["{INSTAGRAM}","{FACEBOOK}"]{svc}}}
 </script>"""
 
 ORG_SCHEMA = f"""<script type="application/ld+json">
@@ -289,7 +292,7 @@ ORG_SCHEMA = f"""<script type="application/ld+json">
 "@id":"{SITE}/#organization","name":"{BRAND}","legalName":"{LEGAL}",
 "url":"{SITE}/","logo":"{SITE}/assets/images/logo.jpg",
 "image":"{SITE}/assets/images/og-image.jpg",
-"telephone":"{HELPLINE}","sameAs":["{INSTAGRAM}"],
+"telephone":"{HELPLINE}","sameAs":["{INSTAGRAM}","{FACEBOOK}"],
 "department":[{",".join(f'{{"@id":"{SITE}/branches/{b["slug"]}/#business"}}' for b in BRANCHES)}]}}
 </script>
 <script type="application/ld+json">
@@ -304,7 +307,7 @@ def service_card(s, compact=False):
         badge = f'<span class="svc-badge">Available at {only}</span>'
     return f"""<div class="svc-card{' svc-card-badged' if badge else ''}">
   <div class="svc-card-top">
-    <div class="svc-icon">{ICONS[s['icon']]}</div>
+    <div class="svc-icon">{icon(s['icon'], "ic-fill")}</div>
     {badge}
   </div>
   <h3><a href="/services/{s['slug']}/">{s['name']}</a></h3>
@@ -319,7 +322,7 @@ def package_card(p):
     ribbon = f'<div class="pkg-ribbon">{p["badge"]}</div>' if p["badge"] and len(p["badge"]) < 24 else ""
     cat_pill = f'<span class="pkg-cat">{p["badge"]}</span>' if p["badge"] and not ribbon else f'<span class="pkg-cat">{p["category"]}</span>'
     save_pill = f'<span class="pkg-save">Save {p["save"]}</span>' if p["save"] else ""
-    tests = "".join(f'<li>{ICONS["check-circle"]}<span>{t}</span></li>' for t in p["tests"])
+    tests = "".join(f'<li>{icon("check-circle")}<span>{t}</span></li>' for t in p["tests"])
     wa_msg = f'{p["name"]} package'
     return f"""<div class="pkg-card">
   {ribbon}
@@ -350,23 +353,23 @@ def doctor_card(d):
 
 def branch_card(b, full=True):
     badge = f'<div class="branch-badge">{b["badge"]}</div>' if b.get("badge") else ""
-    landline = (f'<div class="branch-row"><span>{ICONS["call"]}</span>'
+    landline = (f'<div class="branch-row">{icon("call")}'
                 f'<a href="tel:{b["landline"]}">{b["landline_display"]}</a></div>'
                 if b.get("landline") else "")
     return f"""<div class="branch-card{' branch-card-flag' if badge else ''}">
   {badge}
-  <div class="branch-card-head">{ICONS['pin']}<h3>{b['name']}</h3></div>
+  <div class="branch-card-head">{icon('pin')}<h3>{b['name']}</h3></div>
   <p class="branch-addr">{b['landmark']}</p>
   <p class="branch-svc">{b['services_line']}</p>
   <div class="branch-rows">
     <div class="branch-row">
-      <span>{ICONS['call']}</span>
+      {icon('call')}
       <a href="tel:{b['phone']}">{b['display']}</a>
-      <a class="branch-call-chip" href="tel:{b['phone']}">{ICONS['call']}Call</a>
+      <a class="branch-call-chip" href="tel:{b['phone']}">{icon('call')}Call</a>
     </div>
     {landline}
     <div class="branch-row branch-row-muted">
-      <span>{ICONS['schedule']}</span><span>{HOURS_WEEK} &bull; {HOURS_SUN}</span>
+      {icon('schedule')}<span>{HOURS_WEEK} &bull; {HOURS_SUN}</span>
     </div>
   </div>
   <div class="branch-actions">
@@ -380,9 +383,11 @@ def branch_card(b, full=True):
 # ================================================================ HOME
 def build_home():
     branch_strip = "".join(f'<span class="hero-chip-branch">{b["name"]}</span>' for b in BRANCHES)
-    svc_cards = "".join(service_card(s) for s in SERVICES)
-    pkg_cards = "".join(package_card(p) for p in PACKAGES)
-    doc_cards = "".join(doctor_card(d) for d in DOCTORS)
+    # Homepage shows highlights only — full lists live on their dedicated pages.
+    svc_cards = "".join(service_card(s) for s in SERVICES[:6])
+    pkg_cards = "".join(package_card(p) for p in
+                        [p for p in PACKAGES if p["badge"]][:3])
+    doc_cards = "".join(doctor_card(d) for d in DOCTORS[:6])
     branch_cards = "".join(branch_card(b) for b in BRANCHES)
 
     title = "Doctors Scans &amp; Labs | Diagnostic Centres Across Kerala"
@@ -446,6 +451,7 @@ def build_home():
         {icon('chat')}Enquire on WhatsApp</a>
     </div>
     <div class="svc-grid">{svc_cards}</div>
+    <div class="view-all"><a class="btn btn-outline-brand btn-lg" href="/services/">View All Services</a></div>
   </div>
 </section>
 
@@ -465,6 +471,7 @@ def build_home():
         {icon('chat')}Get Pricing on WhatsApp</a>
     </div>
     <div class="pkg-grid">{pkg_cards}</div>
+    <div class="view-all"><a class="btn btn-outline-brand btn-lg" href="/packages/">View All Packages</a></div>
   </div>
 </section>
 
@@ -477,6 +484,7 @@ def build_home():
       Doctors actively supporting &amp; working across our diagnostic centres.</p>
     </div>
     <div class="doc-grid">{doc_cards}</div>
+    <div class="view-all"><a class="btn btn-outline-brand btn-lg" href="/doctors/">Meet Our Full Team</a></div>
   </div>
 </section>
 
@@ -489,6 +497,7 @@ def build_home():
       Thiruvananthapuram, and Thrissur districts.</p>
     </div>
     <div class="branch-grid">{branch_cards}</div>
+    <div class="view-all"><a class="btn btn-outline-brand btn-lg" href="/branches/">All Branch Details</a></div>
   </div>
 </section>
 
@@ -547,7 +556,7 @@ def build_service_pages():
   <div class="container">
     <div class="row g-5 align-items-start">
       <div class="col-lg-6">
-        <div class="svc-detail-icon">{ICONS[s['icon']]}</div>
+        <div class="svc-detail-icon">{icon(s['icon'], "ic-fill")}</div>
         <span class="svc-tag lg">{s['tag']}</span>
       </div>
       <div class="col-lg-6">
@@ -774,7 +783,7 @@ def build_blog_index():
         body = f'<div class="blog-grid">{cards}</div>'
     else:
         body = f"""<div class="blog-empty">
-      <div class="svc-detail-icon" style="margin:0 auto 1.25rem;">{ICONS['flask']}</div>
+      <div class="svc-detail-icon" style="margin:0 auto 1.25rem;">{icon('flask', "ic-fill")}</div>
       <h2>New articles coming soon</h2>
       <p class="lede">We're putting together practical guides on diagnostic imaging,
       health screening and preventive care. Check back soon, or message us directly

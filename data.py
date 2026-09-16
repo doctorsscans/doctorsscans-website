@@ -3,7 +3,8 @@ BRAND = "Doctors Scans & Labs"
 LEGAL = "Doctors Scans Healthcare Private Limited"
 GTM = "GTM-53ZJDDC3"
 GSV = "LSMyv9euvEHqeLf6VrJTg5DDCdZKSZXNtCwJTb8QqlM"
-INSTAGRAM = "https://www.instagram.com/doctors_scans_parippally"
+INSTAGRAM = "https://www.instagram.com/doctors_scans/"
+FACEBOOK = "https://www.facebook.com/p/Doctors-Scans-Labs-100094592695391/"
 
 # General helpline shown in the header ticker / Call Now buttons.
 # NOTE: this number (9447257830) is new — confirm it's correct.
