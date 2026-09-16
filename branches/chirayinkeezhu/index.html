@@ -38,10 +38,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/icon-32.png">
 <link rel="apple-touch-icon" href="/assets/images/icon-180.png">
 <link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#6DC9F0">
+<meta name="theme-color" content="#0284c7">
 
-<link rel="stylesheet" href="/assets/vendor/bootstrap.min.css?v=4">
-<link rel="stylesheet" href="/assets/css/main.css?v=4">
+<link rel="preload" href="/assets/fonts/jakarta-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/vendor/bootstrap.min.css?v=6">
+<link rel="stylesheet" href="/assets/css/main.css?v=6">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"DiagnosticLab",
 "@id":"https://www.doctorsscans.com/branches/chirayinkeezhu/#business",
@@ -59,20 +61,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 "openingHoursSpecification":[
 {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"07:00","closes":"19:30"},
 {"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"07:00","closes":"14:00"}],
-"sameAs":["https://www.instagram.com/doctors_scans_parippally"],"availableService":[{"@type":"MedicalTest","name":"Ultrasonography (USG)"},{"@type":"MedicalTest","name":"Advanced Fetal Imaging"},{"@type":"MedicalTest","name":"USG Guided Procedures"},{"@type":"MedicalTest","name":"FibroScan & Elastography"},{"@type":"MedicalTest","name":"Doppler Studies"},{"@type":"MedicalTest","name":"Echocardiography (Echo)"},{"@type":"MedicalTest","name":"Laboratory Services"},{"@type":"MedicalTest","name":"Pulmonary Function Test (PFT)"},{"@type":"MedicalTest","name":"ECG & Holter Monitoring"},{"@type":"MedicalTest","name":"Adult Echocardiography"}]}
+"sameAs":["https://www.instagram.com/doctors_scans_parippally"],"availableService":[{"@type":"MedicalTest","name":"Ultrasonography (USG)"},{"@type":"MedicalTest","name":"Advanced Fetal Imaging"},{"@type":"MedicalTest","name":"USG Guided Procedures"},{"@type":"MedicalTest","name":"Fibroscan & Elastography"},{"@type":"MedicalTest","name":"Doppler Studies"},{"@type":"MedicalTest","name":"Laboratory Services"},{"@type":"MedicalTest","name":"Echocardiography (Echo)"},{"@type":"MedicalTest","name":"Pulmonary Function Test (PFT)"},{"@type":"MedicalTest","name":"ECG & Holter Monitoring"}]}
 </script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.doctorsscans.com/"},{"@type":"ListItem","position":2,"name":"Branches","item":"https://www.doctorsscans.com/branches/"},{"@type":"ListItem","position":3,"name":"Chirayinkeezhu","item":"https://www.doctorsscans.com/branches/chirayinkeezhu/"}]}</script>
 </head>
-<body class="page-banner-contact">
+<body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53ZJDDC3" title="Google Tag Manager"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager -->
 <a class="skip-link" href="#main">Skip to content</a>
-<nav class="navbar navbar-expand-lg sticky-top" aria-label="Main navigation">
+<div class="ticker">
+  <div class="container ticker-row">
+    <a class="ticker-help" href="tel:+919447257830"><span class="ic-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.2 1L6.6 10.8z"/></svg></span><span>Helpline:</span> 94472 57830</a>
+    <span class="ticker-hours"><span class="ic-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>Mon-Sat 7:00 AM - 7:30 PM &bull; Sunday 7:00 AM - 2:00 PM</span>
+  </div>
+</div>
+<nav class="navbar navbar-expand-xl sticky-top" aria-label="Main navigation">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <img src="/assets/images/logo.webp" alt="" width="44" height="44" decoding="async">
-      <span>Doctors Scans</span>
+      <img src="/assets/images/logo.webp" alt="" width="46" height="46" decoding="async">
+      <span class="navbar-brand-text">
+        <strong>Doctors Scans &amp; Labs</strong>
+        <small>A unit of Doctors Scans Healthcare Private Limited</small>
+      </span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarNav" aria-controls="navbarNav"
@@ -80,28 +91,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto align-items-lg-center">
-        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-<li class="nav-item"><a class="nav-link" href="/services/">Services</a></li>
-<li class="nav-item"><a class="nav-link" href="/packages/">Packages</a></li>
-<li class="nav-item"><a class="nav-link" href="/doctors/">Doctors</a></li>
-<li class="nav-item"><a class="nav-link active" href="/branches/" aria-current="page">Branches</a></li>
-<li class="nav-item"><a class="nav-link" href="/about/">About Us</a></li>
-<li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
-
-        <li class="nav-item ms-lg-3">
-          <button type="button" class="btn btn-whatsapp btn-sm px-3" data-book="an appointment">
-            <svg class="wa" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.23 8.24c0 4.54-3.69 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.09-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.23.25-.86.84-.86 2.05s.88 2.38 1 2.54c.13.17 1.74 2.65 4.21 3.72.59.25 1.05.4 1.4.52.59.19 1.13.16 1.55.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29z"/></svg>
-            Book on WhatsApp
-          </button>
-        </li>
-      </ul>
+      <div class="nav-links"><a class="nav-link" href="/">Home</a><a class="nav-link" href="/services/">Services</a><a class="nav-link" href="/packages/">Packages</a><a class="nav-link active" href="/branches/" aria-current="page">Branches</a><a class="nav-link" href="/doctors/">Doctors</a><a class="nav-link" href="/blog/">Blog</a><a class="nav-link" href="/about/">About Us</a><a class="nav-link" href="/contact/">Contact</a></div>
+      <div class="nav-actions">
+        <a class="btn btn-chip" href="/branches/"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>Find Centre</a>
+        <a class="btn btn-chip" href="tel:+919447257830"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.2 1L6.6 10.8z"/></svg></span>Call Now</a>
+        <button type="button" class="btn btn-whatsapp" data-book="an appointment">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.23 8.24c0 4.54-3.69 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.09-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.23.25-.86.84-.86 2.05s.88 2.38 1 2.54c.13.17 1.74 2.65 4.21 3.72.59.25 1.05.4 1.4.52.59.19 1.13.16 1.55.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29z"/></svg></span>Book on WhatsApp</button>
+      </div>
     </div>
   </div>
 </nav>
-<main id="main"><header class="hero hero-contact">
+<main id="main"><header class="page-hero hero-contact">
+  <span class="hero-sweep" aria-hidden="true"></span>
   <div class="container">
     <h1>Doctors Scans &amp; Labs, Chirayinkeezhu</h1>
+    <span class="hero-rule" aria-hidden="true"></span>
     <p class="hero-sub">Near Taluk Hospital, Chirayinkeezhu</p>
     
   </div>
@@ -114,26 +118,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2>Contact this centre</h2>
         <p class="lede">Convenient for patients across Chirayinkeezhu and northern Thiruvananthapuram district.</p>
         <div class="contact-block">
-          <p class="ct-row"><span>Address</span>Near Taluk Hospital, Chirayinkeezhu, Chirayinkeezhu,
-             Kerala 695304</p>
-          <p class="ct-row"><span>Phone</span>
-             <a href="tel:+919072136524">90721 36524</a></p>
+          <p class="ct-row"><span>Address</span>Near Taluk Hospital, Chirayinkeezhu, Chirayinkeezhu, Kerala 695304</p>
+          <p class="ct-row"><span>Phone</span><a href="tel:+919072136524">90721 36524</a></p>
           
           <p class="ct-row"><span>Hours</span>Mon-Sat 7:00 AM - 7:30 PM<br>Sunday 7:00 AM - 2:00 PM</p>
         </div>
         <div class="d-grid gap-2 mt-4">
           <a class="btn btn-whatsapp btn-lg" rel="noopener"
              href="https://wa.me/919072136524?text=Hello%20Doctors%20Scans%20Chirayinkeezhu%2C%20I%20would%20like%20to%20book%20an%20appointment.">
-            Message Chirayinkeezhu on WhatsApp</a>
-          <a class="btn btn-outline-brand btn-lg" href="tel:+919072136524">Call 90721 36524</a>
+            <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.23 8.24c0 4.54-3.69 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.09-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.23.25-.86.84-.86 2.05s.88 2.38 1 2.54c.13.17 1.74 2.65 4.21 3.72.59.25 1.05.4 1.4.52.59.19 1.13.16 1.55.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29z"/></svg></span>Message Chirayinkeezhu on WhatsApp</a>
+          <a class="btn btn-outline-brand btn-lg" href="tel:+919072136524"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.2 1L6.6 10.8z"/></svg></span>Call 90721 36524</a>
           <a class="btn btn-link" href="https://maps.app.goo.gl/rN53NevPr2ewYXT39" rel="noopener">Open in Google Maps</a>
         </div>
       </div>
       <div class="col-lg-7">
         <div class="branch-map">
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.3158530135506!2d76.7876082!3d8.661481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05ebaaa99c89d3%3A0x7198193ac76a3abf!2sDoctors%20Scans%20%26%20Labs%2C%20Chirayinkeezhu!5e0!3m2!1sen!2sin!4v1772539147423!5m2!1sen!2sin" title="Map showing Doctors Scans &amp; Labs, Chirayinkeezhu"
-                  loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                  allowfullscreen></iframe>
+                  loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         </div>
       </div>
     </div>
@@ -141,10 +142,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 <section class="section section-alt">
   <div class="container">
-    <h2 class="section-title">Services at this centre</h2>
-    <div class="chip-row"><a class="rel-chip" href="/services/ultrasonography-usg/">Ultrasonography (USG)</a><a class="rel-chip" href="/services/advanced-fetal-medicine/">Advanced Fetal Imaging</a><a class="rel-chip" href="/services/usg-guided-procedures/">USG Guided Procedures</a><a class="rel-chip" href="/services/fibroscan-elastography/">FibroScan & Elastography</a><a class="rel-chip" href="/services/doppler-studies/">Doppler Studies</a><a class="rel-chip" href="/services/echocardiography/">Echocardiography (Echo)</a><a class="rel-chip" href="/services/laboratory-services/">Laboratory Services</a><a class="rel-chip" href="/services/pulmonary-function-test/">Pulmonary Function Test (PFT)</a><a class="rel-chip" href="/services/ecg-holter-monitoring/">ECG & Holter Monitoring</a><a class="rel-chip" href="/services/adult-echocardiography/">Adult Echocardiography</a></div>
-    <h2 class="section-title mt-5">Our other centres</h2>
-    <div class="chip-row"><a class="branch-chip sm" href="/branches/parippally/">Parippally</a><a class="branch-chip sm" href="/branches/kadakkal/">Kadakkal</a><a class="branch-chip sm" href="/branches/kottarakkara/">Kottarakkara</a><a class="branch-chip sm" href="/branches/karunagappalli/">Karunagappalli</a><a class="branch-chip sm" href="/branches/kottiyam/">Kottiyam</a><a class="branch-chip sm" href="/branches/chavakkad/">Chavakkad</a></div>
+    <h2 class="section-title-lg">Services at this centre</h2>
+    <div class="chip-row"><a class="rel-chip" href="/services/ultrasonography-usg/">Ultrasonography (USG)</a><a class="rel-chip" href="/services/advanced-fetal-medicine/">Advanced Fetal Imaging</a><a class="rel-chip" href="/services/usg-guided-procedures/">USG Guided Procedures</a><a class="rel-chip" href="/services/fibroscan-elastography/">Fibroscan & Elastography</a><a class="rel-chip" href="/services/doppler-studies/">Doppler Studies</a><a class="rel-chip" href="/services/laboratory-services/">Laboratory Services</a><a class="rel-chip" href="/services/echocardiography/">Echocardiography (Echo)</a><a class="rel-chip" href="/services/pulmonary-function-test/">Pulmonary Function Test (PFT)</a><a class="rel-chip" href="/services/ecg-holter-monitoring/">ECG & Holter Monitoring</a></div>
+    <h2 class="section-title-lg mt-5">Our other centres</h2>
+    <div class="chip-row"><a class="rel-chip" href="/branches/parippally/">Parippally</a><a class="rel-chip" href="/branches/kadakkal/">Kadakkal</a><a class="rel-chip" href="/branches/kottarakkara/">Kottarakkara</a><a class="rel-chip" href="/branches/karunagappalli/">Karunagappalli</a><a class="rel-chip" href="/branches/kottiyam/">Kottiyam</a><a class="rel-chip" href="/branches/chavakkad/">Chavakkad</a></div>
   </div>
 </section>
 </main><footer class="site-footer">
@@ -152,11 +153,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="row g-4">
       <div class="col-lg-4">
         <div class="footer-brand">
-          <img src="/assets/images/logo.webp" alt="" width="48" height="48" loading="lazy" decoding="async">
-          <div>
-            <strong>Doctors Scans &amp; Labs</strong>
-            <span>A unit of Doctors Scans Healthcare Private Limited</span>
-          </div>
+          <img src="/assets/images/logo.webp" alt="" width="46" height="46" loading="lazy" decoding="async">
+          <div><strong>Doctors Scans &amp; Labs</strong><span>A unit of Doctors Scans Healthcare Private Limited</span></div>
         </div>
         <p class="footer-note">Advanced diagnostic imaging and laboratory services across
         Kollam, Thiruvananthapuram and Thrissur districts.</p>
@@ -173,16 +171,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="col-lg-3">
         <h2 class="footer-head">Get in Touch</h2>
         <p class="footer-list">
+          <a href="tel:+919447257830">94472 57830</a><br>
           <a href="tel:+919995236524">99952 36524</a><br>
           <a href="tel:+914742572211">0474 257 2211</a>
         </p>
         <button type="button" class="btn btn-whatsapp btn-sm" data-book="an appointment">
-          <svg class="wa" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.23 8.24c0 4.54-3.69 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.09-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.23.25-.86.84-.86 2.05s.88 2.38 1 2.54c.13.17 1.74 2.65 4.21 3.72.59.25 1.05.4 1.4.52.59.19 1.13.16 1.55.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29z"/></svg>
-          Book on WhatsApp
-        </button>
+          <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.23 8.24c0 4.54-3.69 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.09-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.23.25-.86.84-.86 2.05s.88 2.38 1 2.54c.13.17 1.74 2.65 4.21 3.72.59.25 1.05.4 1.4.52.59.19 1.13.16 1.55.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29z"/></svg></span>Book on WhatsApp</button>
         <p class="footer-social">
           <a href="https://www.instagram.com/doctors_scans_parippally" rel="noopener" aria-label="Doctors Scans on Instagram">
-            <svg viewBox="0 0 24 24" aria-hidden="true" width="26" height="26"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06zm0 3.678a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm7.846-10.405a1.441 1.441 0 01-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true" width="22" height="22"><path fill="currentColor" d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 6.32a3.52 3.52 0 1 0 0 7.04 3.52 3.52 0 0 0 0-7.04zm0 5.81a2.29 2.29 0 1 1 0-4.58 2.29 2.29 0 0 1 0 4.58zm4.48-5.95a.82.82 0 1 1-1.64 0 .82.82 0 0 1 1.64 0z"/></svg>
           </a>
         </p>
       </div>
@@ -229,7 +226,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="picker-num">89436 52433</span>
           </a><a class="picker-item" href="#" data-wa="919645436524" data-tel="+919645436524" data-slug="chavakkad">
             <span class="picker-name">Chavakkad</span>
-            <span class="picker-sub">Ovungal Building, Chavakkad</span>
+            <span class="picker-sub">Near NEXA Showroom, Ovungal Building, Chavakkad</span>
             <span class="picker-num">96454 36524</span>
           </a>
         </div>
@@ -238,11 +235,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
-<a class="wa-float" href="#" data-book="an appointment" aria-label="Book on WhatsApp">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.23 8.24c0 4.54-3.69 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.09-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.23.25-.86.84-.86 2.05s.88 2.38 1 2.54c.13.17 1.74 2.65 4.21 3.72.59.25 1.05.4 1.4.52.59.19 1.13.16 1.55.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29z"/></svg>
-</a>
+<a class="wa-float" href="#" data-book="an appointment" aria-label="Book on WhatsApp"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 8.23 8.24c0 4.54-3.69 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.15.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.09-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.23.25-.86.84-.86 2.05s.88 2.38 1 2.54c.13.17 1.74 2.65 4.21 3.72.59.25 1.05.4 1.4.52.59.19 1.13.16 1.55.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.29z"/></svg></span></a>
 
-<script src="/assets/vendor/bootstrap.bundle.min.js?v=4" defer></script>
-<script src="/assets/js/main.js?v=4" defer></script>
+<script src="/assets/vendor/bootstrap.bundle.min.js?v=6" defer></script>
+<script src="/assets/js/main.js?v=6" defer></script>
 </body>
 </html>
