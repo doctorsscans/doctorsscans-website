@@ -74,9 +74,13 @@ img { max-width: 100%; height: auto; }
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
   gap: .35rem .75rem; padding-block: .35rem;
 }
-.ticker-help { display: inline-flex; align-items: center; gap: .35rem; color: #e2e8f0; font-weight: 600; }
+.ticker-help { display: inline-flex; align-items: center; gap: .35rem; color: #e2e8f0; font-weight: 600; background: none; border: none; padding: 0; font-family: inherit; font-size: inherit; cursor: pointer; }
 .ticker-help span { color: var(--cyan-brand); font-weight: 700; }
 .ticker-help:hover { color: var(--cyan-brand); }
+.footer-tel-btn { background: none; border: none; padding: 0; font: inherit; cursor: pointer; color: rgba(255,255,255,.72); text-decoration: none; }
+.footer-tel-btn:hover { color: var(--cyan-brand); }
+.info-box .footer-tel-btn { color: var(--primary-dark); }
+.info-box .footer-tel-btn:hover { color: var(--primary); }
 .ticker-hours { display: inline-flex; align-items: center; gap: .4rem; color: #bae6fd; }
 
 .navbar { background: rgba(255,255,255,.97); backdrop-filter: blur(10px); border-bottom: 1px solid var(--outline-soft); padding-block: .5rem; }

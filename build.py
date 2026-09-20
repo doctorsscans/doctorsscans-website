@@ -29,9 +29,9 @@ ICONS = {
 "radiology": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><path d="M12 3v4.5M12 16.5V21M3 12h4.5M16.5 12H21"/></svg>',
 "ultrasound": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="14" height="10" rx="1.5"/><path d="M7 18h6M10 14v4"/><path d="M14 7l3 0M15.5 5.5v3"/></svg>',
 "ct": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="7"/><circle cx="12" cy="10" r="3"/><path d="M7 20h10M9 17.5v2.5M15 17.5v2.5"/></svg>',
-"fetal": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3a6 6 0 1 0 4.24 10.24M13 8a3 3 0 1 1-3 3"/><path d="M14 14c1 1.5 1 3.5 0 5"/></svg>',
-"biopsy": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5L5 19M15 3l6 6M3 15l6 6"/></svg>',
-"liver": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12c0-4 3-8 9-8 5 0 7 3 7 6 0 5-4 9-9 9-4 0-7-3-7-5 0-1 .5-1.7 1.5-2"/></svg>',
+"fetal": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M14.5 9c-2.2 0-3.5 1.6-3.5 3.5S12.3 16 14 16"/><circle cx="14.5" cy="9" r="1.15" fill="currentColor" stroke="none"/></svg>',
+"biopsy": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 3.5l3 3"/><path d="M16 5L5 16"/><path d="M13 8l2 2M11 10l2 2M9 12l2 2"/><path d="M5 16l-2 5 5-2z"/></svg>',
+"liver": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11c0-3 2-6 6-7 1-1.5 3-2 5-1.5 3 .8 5 3.5 5 6.5 0 5-4 9-9 9-2 0-4-.8-5.5-2.2C3.2 14.5 3 12.8 3 11z"/><path d="M6.5 12c1-1.2 2-1.2 3 0s2-1.2 3 0 2-1.2 3 0"/></svg>',
 "doppler": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h3l2-7 4 14 2-9 2 5h7"/></svg>',
 "flask": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2h6M10 2v6.5L4.5 18a2 2 0 0 0 1.7 3h11.6a2 2 0 0 0 1.7-3L14 8.5V2"/><path d="M7.5 14h9"/></svg>',
 "echo": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 8.6a5.2 5.2 0 0 0-8.8-3.8 5.2 5.2 0 0 0-8.8 3.8C3.2 13.6 12 20 12 20s8.8-6.4 8.8-11.4z"/><path d="M6 12h2l1.5-3L11 15l1.5-5L14 12h4"/></svg>',
@@ -106,8 +106,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 def nav(active=""):
     items = [("/", "Home", "home"), ("/services/", "Services", "services"),
              ("/packages/", "Packages", "packages"), ("/branches/", "Branches", "branches"),
-             ("/about/", "About Us", "about"), ("/blog/", "Blog", "blog"),
-             ("/contact/", "Contact", "contact")]
+             ("/about/", "About Us", "about"), ("/blog/", "Blog", "blog")]
     li = ""
     for href, label, key in items:
         cur = ' aria-current="page"' if key == active else ""
@@ -115,7 +114,7 @@ def nav(active=""):
         li += f'<a class="{cls}" href="{href}"{cur}>{label}</a>'
     return f"""<div class="ticker">
   <div class="container ticker-row">
-    <a class="ticker-help" href="tel:{HELPLINE}">{icon('call','ic-sm')}<span>Helpline:</span> {HELPLINE_DISPLAY}</a>
+    <button type="button" class="ticker-help" data-call="1">{icon('call','ic-sm')}<span>Helpline:</span> {HELPLINE_DISPLAY}</button>
     <span class="ticker-hours">{icon('schedule','ic-sm')}{HOURS_WEEK} &bull; {HOURS_SUN}</span>
   </div>
 </div>
@@ -137,7 +136,7 @@ def nav(active=""):
       <div class="nav-links">{li}</div>
       <div class="nav-actions">
         <a class="btn btn-chip" href="/branches/">{icon('pin')}Find Centre</a>
-        <a class="btn btn-chip" href="tel:{HELPLINE}">{icon('call')}Call Now</a>
+        {call_btn(cls="btn btn-chip", label="Call Now")}
         <button type="button" class="btn btn-whatsapp" data-book="an appointment">
           {icon('chat')}Book on WhatsApp</button>
       </div>
@@ -152,7 +151,7 @@ def footer():
     quick = "".join(f'<li><a href="{h}">{l}</a></li>' for h, l in
                     [("/services/", "Services"), ("/packages/", "Health Packages"),
                      ("/about/#team", "Our Doctors"), ("/branches/", "All Branches"),
-                     ("/about/", "About Us"), ("/contact/", "Contact")])
+                     ("/about/", "About Us"), ("/blog/", "Blog")])
     main = BRANCHES[0]
     return f"""<footer class="site-footer">
   <div class="container">
@@ -177,7 +176,7 @@ def footer():
       <div class="col-lg-3">
         <h2 class="footer-head">Get in Touch</h2>
         <p class="footer-list">
-          <a href="tel:{HELPLINE}">{HELPLINE_DISPLAY}</a>
+          <button type="button" class="footer-tel-btn" data-call="1">{HELPLINE_DISPLAY}</button>
         </p>
         <button type="button" class="btn btn-whatsapp btn-sm" data-book="an appointment">
           {icon('chat')}Book on WhatsApp</button>
@@ -192,7 +191,7 @@ def footer():
       </div>
     </div>
     <hr>
-    <p class="footer-legal">&copy; 2026 {LEGAL}. All rights reserved.</p>
+    <p class="footer-legal">&copy; 2023 {LEGAL}. All rights reserved.</p>
   </div>
 </footer>
 
@@ -280,7 +279,7 @@ def branch_schema(b, service_list=False):
 "geo":{{"@type":"GeoCoordinates","latitude":{b['lat']},"longitude":{b['lng']}}},
 "hasMap":"{b['map']}",
 "openingHoursSpecification":[
-{{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"07:00","closes":"19:30"}},
+{{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"07:00","closes":"19:00"}},
 {{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"07:00","closes":"14:00"}}],
 "sameAs":["{INSTAGRAM}","{FACEBOOK}"]{svc}}}
 </script>"""
@@ -318,14 +317,14 @@ def service_card(s, compact=False):
 
 def package_card(p):
     ribbon = f'<div class="pkg-ribbon">{p["badge"]}</div>' if p["badge"] and len(p["badge"]) < 24 else ""
-    cat_pill = f'<span class="pkg-cat">{p["badge"]}</span>' if p["badge"] and not ribbon else f'<span class="pkg-cat">{p["category"]}</span>'
+    cat_pill = f'<span class="pkg-cat">{p["category"]}</span>' if p["category"] else ""
     save_pill = f'<span class="pkg-save">Save {p["save"]}</span>' if p["save"] else ""
     tests = "".join(f'<li>{icon("check-circle")}<span>{t}</span></li>' for t in p["tests"])
     wa_msg = f'{p["name"]} package'
     return f"""<div class="pkg-card">
   {ribbon}
   <div class="pkg-card-head">
-    <span class="pkg-cat">{p['category']}</span>
+    {cat_pill}
     {save_pill}
   </div>
   <h3>{p['name']}</h3>
@@ -410,7 +409,7 @@ def build_home():
     <div class="home-hero-topline">
       <span class="pill pill-live">
         <span class="pulse-dot"></span>
-        {LEGAL}<em> &bull; Centres Across Kerala</em>
+        {BRAND}<em> &bull; Centres Across Kerala</em>
       </span>
     </div>
     <div class="home-hero-grid">
@@ -431,14 +430,6 @@ def build_home():
       <div class="home-hero-visual">
         <div class="hero-photo-frame">
           <img src="/assets/images/banner-home.webp" alt="Clinical ultrasound examination at Doctors Scans" width="640" height="480" decoding="async">
-          <span class="hero-photo-badge"><span class="pulse-dot"></span>Open 7 AM Daily &bull; Sunday Services</span>
-          <div class="hero-photo-card">
-            {icon('radiology')}
-            <div>
-              <strong>Comprehensive Diagnostic Network</strong>
-              <span>{" &bull; ".join(b['name'] for b in BRANCHES)}</span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -454,8 +445,7 @@ def build_home():
         <p class="section-lede-lg">State-of-the-art Radiology Imaging and Laboratory
         Services calibrated for accuracy, early detection, and prompt patient reporting.</p>
       </div>
-      <a class="btn btn-whatsapp shrink-0" href="{wa_link(BRANCHES[0]['wa'], 'I want to enquire about services')}" rel="noopener">
-        {icon('chat')}Enquire on WhatsApp</a>
+      {wa_btn("about services", cls="btn btn-whatsapp shrink-0", label="Enquire on WhatsApp")}
     </div>
     <div class="svc-grid">{svc_cards}</div>
     <div class="view-all"><a class="btn btn-outline-brand btn-lg" href="/services/">View All Services</a></div>
@@ -474,8 +464,7 @@ def build_home():
         <p><strong>Promotional rates active across all centres. Stated prices include
         all listed parameters and tests.</strong></p>
       </div>
-      <a class="btn btn-whatsapp shrink-0" href="{wa_link(BRANCHES[0]['wa'], 'Please send current package pricing and details')}" rel="noopener">
-        {icon('chat')}Get Pricing on WhatsApp</a>
+      {wa_btn("current package pricing and details", cls="btn btn-whatsapp shrink-0", label="Get Pricing on WhatsApp")}
     </div>
     <div class="pkg-grid">{pkg_cards}</div>
     <div class="view-all"><a class="btn btn-outline-brand btn-lg" href="/packages/">View All Packages</a></div>
@@ -499,9 +488,8 @@ def build_home():
   <div class="container">
     <div class="text-center-head">
       <span class="eyebrow">Network of Excellence</span>
-      <h2 class="section-title-lg">Our Main Branches &amp; Centres</h2>
-      <p class="section-lede-lg">Conveniently located near major hospitals across Kollam,
-      Thiruvananthapuram, and Thrissur districts.</p>
+      <h2 class="section-title-lg">Our Main Branches</h2>
+      <p class="section-lede-lg">Conveniently located near major hospitals across South Kerala.</p>
     </div>
     <div class="branch-grid">{branch_cards}</div>
     <div class="view-all"><a class="btn btn-outline-brand btn-lg" href="/branches/">All Branch Details</a></div>
@@ -513,11 +501,11 @@ def build_home():
     <div>
       <h2>Committed to Clinical Precision &amp; Compassionate Care</h2>
       <p>Operating across Kerala with Advanced Ultrasound &amp; Doppler Modalities,
-      Operational Fetal Imaging, and High-Throughput Automated Laboratories.</p>
+      Advanced Fetal Imaging, and High-Throughput Automated Laboratories.</p>
     </div>
     <div class="cta-strip-actions">
       {wa_btn("an appointment", cls="btn btn-whatsapp btn-lg", label="Chat on WhatsApp")}
-      <a class="btn btn-outline-white btn-lg" href="tel:{HELPLINE}">{icon('call')}Call Now</a>
+      {call_btn(cls="btn btn-outline-white btn-lg", label="Call Now")}
     </div>
   </div>
 </section>
@@ -534,8 +522,8 @@ def build_services_index():
             f"ECG and laboratory services across our {len(BRANCHES)} centres in Kerala.")
     write("services/index.html", head(title, desc, "/services/", cbld) +
           nav('services') + '<main id="main">' +
-          hero('hero-services', 'Our services',
-               f'{len(SERVICES)} diagnostic services, available across our centres.') + cb + f"""
+          hero('hero-services', 'Our Services',
+               'Advanced services available across our centres.') + cb + f"""
 <section class="section"><div class="container"><div class="svc-grid">{cards}</div></div></section>
 </main>""" + footer())
 
@@ -604,8 +592,7 @@ def build_packages():
       <p><strong>Promotional rates active across all centres. Stated prices include
       all listed parameters and tests.</strong></p>
     </div>
-    <a class="btn btn-whatsapp shrink-0" href="{wa_link(BRANCHES[0]['wa'], 'Please send current package pricing and details')}" rel="noopener">
-      {icon('chat')}Get Pricing on WhatsApp</a>
+    {wa_btn("current package pricing and details", cls="btn btn-whatsapp shrink-0", label="Get Pricing on WhatsApp")}
   </div>
   <div class="pkg-grid">{cards}</div>
 </div></section>
@@ -676,14 +663,28 @@ def build_about():
 def build_branches_index():
     cards = "".join(branch_card(b) for b in BRANCHES)
     cb, cbld = crumbs([("/", "Home"), ("/branches/", "Branches")])
-    title = "Our Branches | Doctors Scans &amp; Labs"
+    title = "Our Branches &amp; Contact | Doctors Scans &amp; Labs"
     desc = (f"{len(BRANCHES)} Doctors Scans & Labs centres across Kollam, Thiruvananthapuram "
-            f"and Thrissur. Addresses, phone numbers and directions.")
+            f"and Thrissur. Addresses, phone numbers, WhatsApp and directions.")
     write("branches/index.html", head(title, desc, "/branches/", cbld) +
           nav('branches') + '<main id="main">' +
           hero('hero-contact', 'Our branches',
-               f'{len(BRANCHES)} centres across Kollam, Thiruvananthapuram and Thrissur districts.') + cb + f"""
-<section class="section"><div class="container"><div class="branch-grid">{cards}</div></div></section>
+               f'Message or call the centre nearest you — {len(BRANCHES)} centres across '
+               f'Kollam, Thiruvananthapuram and Thrissur districts.') + cb + f"""
+<section class="section">
+  <div class="container">
+    <div class="row g-4 info-row">
+      <div class="col-md-4"><div class="info-box">
+        <h2 class="h6">Opening hours</h2><p>{HOURS_WEEK}<br>{HOURS_SUN}</p></div></div>
+      <div class="col-md-4"><div class="info-box">
+        <h2 class="h6">Helpline</h2><p><button type="button" class="footer-tel-btn" data-call="1">{HELPLINE_DISPLAY}</button></p></div></div>
+      <div class="col-md-4"><div class="info-box">
+        <h2 class="h6">Book a scan</h2><p>Pick your centre below and message us on WhatsApp.</p></div></div>
+    </div>
+    <h2 class="section-title-lg mt-5">All {len(BRANCHES)} centres</h2>
+    <div class="branch-grid">{cards}</div>
+  </div>
+</section>
 </main>""" + footer())
 
 def build_branch_pages():
@@ -738,33 +739,6 @@ def build_branch_pages():
     <div class="chip-row">{svc}</div>
     <h2 class="section-title-lg mt-5">Our other centres</h2>
     <div class="chip-row">{others}</div>
-  </div>
-</section>
-</main>""" + footer())
-
-# ================================================================ CONTACT
-def build_contact():
-    b = BRANCHES[0]
-    cards = "".join(branch_card(x) for x in BRANCHES)
-    cb, cbld = crumbs([("/", "Home"), ("/contact/", "Contact")])
-    title = "Contact Us | Doctors Scans &amp; Labs, Kerala"
-    desc = (f"Call or WhatsApp any of our {len(BRANCHES)} centres across Kerala. "
-            f"Open {HOURS_WEEK.lower()}, {HOURS_SUN.lower()}.")
-    write("contact/index.html", head(title, desc, "/contact/", branch_schema(b) + cbld) +
-          nav('contact') + '<main id="main">' +
-          hero('hero-contact', 'Contact us', 'Message the centre nearest you and we will take it from there.') + cb + f"""
-<section class="section">
-  <div class="container">
-    <div class="row g-4 info-row">
-      <div class="col-md-4"><div class="info-box">
-        <h2 class="h6">Opening hours</h2><p>{HOURS_WEEK}<br>{HOURS_SUN}</p></div></div>
-      <div class="col-md-4"><div class="info-box">
-        <h2 class="h6">Helpline</h2><p><a href="tel:{HELPLINE}">{HELPLINE_DISPLAY}</a></p></div></div>
-      <div class="col-md-4"><div class="info-box">
-        <h2 class="h6">Book a scan</h2><p>Pick your centre below and message us on WhatsApp.</p></div></div>
-    </div>
-    <h2 class="section-title-lg mt-5">All {len(BRANCHES)} centres</h2>
-    <div class="branch-grid">{cards}</div>
   </div>
 </section>
 </main>""" + footer())
@@ -841,7 +815,7 @@ def build_404():
   if (MOVED[p]) {{ location.replace(MOVED[p]); return; }}
   if (p.indexOf("/services") === 0) {{ location.replace("/services/"); return; }}
   var simple = {{"/packages": "/packages/", "/doctors": "/about/#team",
-                "/about": "/about/", "/contact": "/contact/"}};
+                "/about": "/about/", "/contact": "/branches/"}};
   if (simple[p]) {{ location.replace(simple[p]); }}
 }})();
 </script>"""
@@ -856,18 +830,18 @@ def build_404():
     <a class="rel-chip" href="/services/">Services</a>
     <a class="rel-chip" href="/packages/">Health packages</a>
     <a class="rel-chip" href="/branches/">Our branches</a>
-    <a class="rel-chip" href="/contact/">Contact</a>
+    <a class="rel-chip" href="/branches/">Branches &amp; Contact</a>
   </div>
 </div></section>
 </main>""" + footer())
 
 # ---------------------------------------------------------------- support files
 def build_support():
-    urls = ["/", "/services/", "/packages/", "/branches/", "/blog/", "/about/", "/contact/"]
+    urls = ["/", "/services/", "/packages/", "/branches/", "/blog/", "/about/"]
     urls += [f"/services/{s['slug']}/" for s in SERVICES]
     urls += [f"/branches/{b['slug']}/" for b in BRANCHES]
     urls += [f"/blog/{p['slug']}/" for p in BLOG_POSTS]
-    pri = {"/": "1.0", "/services/": "0.9", "/branches/": "0.9", "/packages/": "0.9", "/contact/": "0.8"}
+    pri = {"/": "1.0", "/services/": "0.9", "/branches/": "0.9", "/packages/": "0.9"}
     entries = "".join(
         f"  <url><loc>{SITE}{u}</loc><changefreq>monthly</changefreq>"
         f"<priority>{pri.get(u, '0.7')}</priority></url>\n" for u in urls)
@@ -877,7 +851,7 @@ def build_support():
     write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
 
     R = [("/Services/", "/services/"), ("/Packages/", "/packages/"),
-         ("/Doctors/", "/about/"), ("/About/", "/about/"), ("/Contact/", "/contact/")]
+         ("/Doctors/", "/about/"), ("/About/", "/about/"), ("/Contact/", "/branches/")]
     write("_redirects", "".join(f"{a}  {b}  301\n" for a, b in R) +
           "/header.html  /  301\n/footer.html  /  301\n")
 
@@ -928,7 +902,6 @@ if __name__ == "__main__":
     build_branch_pages()
     build_blog_index()
     build_blog_posts()
-    build_contact()
     build_404()
     build_support()
     print("built")
