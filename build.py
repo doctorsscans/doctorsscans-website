@@ -106,8 +106,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 def nav(active=""):
     items = [("/", "Home", "home"), ("/services/", "Services", "services"),
              ("/packages/", "Packages", "packages"), ("/branches/", "Branches", "branches"),
-             ("/doctors/", "Doctors", "doctors"), ("/blog/", "Blog", "blog"),
-             ("/about/", "About Us", "about"), ("/contact/", "Contact", "contact")]
+             ("/about/", "About Us", "about"), ("/blog/", "Blog", "blog"),
+             ("/contact/", "Contact", "contact")]
     li = ""
     for href, label, key in items:
         cur = ' aria-current="page"' if key == active else ""
@@ -151,7 +151,7 @@ def footer():
     links = "".join(f'<li><a href="/branches/{b["slug"]}/">{b["name"]}</a></li>' for b in BRANCHES)
     quick = "".join(f'<li><a href="{h}">{l}</a></li>' for h, l in
                     [("/services/", "Services"), ("/packages/", "Health Packages"),
-                     ("/doctors/", "Our Doctors"), ("/branches/", "All Branches"),
+                     ("/about/#team", "Our Doctors"), ("/branches/", "All Branches"),
                      ("/about/", "About Us"), ("/contact/", "Contact")])
     main = BRANCHES[0]
     return f"""<footer class="site-footer">
@@ -177,9 +177,7 @@ def footer():
       <div class="col-lg-3">
         <h2 class="footer-head">Get in Touch</h2>
         <p class="footer-list">
-          <a href="tel:{HELPLINE}">{HELPLINE_DISPLAY}</a><br>
-          <a href="tel:{main['phone']}">{main['display']}</a><br>
-          <a href="tel:{main['landline']}">{main['landline_display']}</a>
+          <a href="tel:{HELPLINE}">{HELPLINE_DISPLAY}</a>
         </p>
         <button type="button" class="btn btn-whatsapp btn-sm" data-book="an appointment">
           {icon('chat')}Book on WhatsApp</button>
@@ -340,13 +338,22 @@ def package_card(p):
   {wa_btn(wa_msg, cls="btn btn-whatsapp w-100 mt-3")}
 </div>"""
 
+def _nowrap_tail(name):
+    """Join the last two words of a name with a non-breaking space, so a
+    trailing initial (e.g. the 'G' in 'Sabarinadh M G') never wraps onto its
+    own line by itself."""
+    parts = name.split(" ")
+    if len(parts) < 2:
+        return name
+    return " ".join(parts[:-2] + [parts[-2] + "\u00a0" + parts[-1]])
+
 def doctor_card(d):
     slug = d["name"].lower().replace("dr.","").strip().replace(" ","-").replace(".","")
     return f"""<div class="doc-card">
   <div class="doc-photo"><img src="/assets/images/doctors/{slug}.webp" alt="{d['name']}"
        width="200" height="200" loading="lazy" decoding="async"></div>
   <span class="doc-role">{d['role']}</span>
-  <h3>{d['name']}</h3>
+  <h3>{_nowrap_tail(d['name'])}</h3>
   <p class="doc-qual">{d['qual']}</p>
   <span class="doc-sub">{d['sub']}</span>
 </div>"""
@@ -484,7 +491,7 @@ def build_home():
       Doctors actively supporting &amp; working across our diagnostic centres.</p>
     </div>
     <div class="doc-grid">{doc_cards}</div>
-    <div class="view-all"><a class="btn btn-outline-brand btn-lg" href="/doctors/">Meet Our Full Team</a></div>
+    <div class="view-all"><a class="btn btn-outline-brand btn-lg" href="/about/#team">Meet Our Full Team</a></div>
   </div>
 </section>
 
@@ -604,61 +611,58 @@ def build_packages():
 </div></section>
 </main>""" + footer())
 
-# ================================================================ DOCTORS
-def build_doctors():
-    cards = "".join(doctor_card(d) for d in DOCTORS)
-    ld = ",".join(f'{{"@type":"Physician","name":"{d["name"]}","medicalSpecialty":"{d["role"]}"}}' for d in DOCTORS)
-    cb, cbld = crumbs([("/", "Home"), ("/doctors/", "Doctors")])
-    schema = (f'<script type="application/ld+json">{{"@context":"https://schema.org",'
-              f'"@type":"ItemList","itemListElement":[{ld}]}}</script>' + cbld)
-    title = "Our Doctors | Doctors Scans &amp; Labs, Kerala"
-    desc = (f"Meet the {len(DOCTORS)} consultant radiologists and specialists at Doctors "
-            f"Scans & Labs, including certified fetal imaging and pulmonology specialists.")
-    write("doctors/index.html", head(title, desc, "/doctors/", schema) +
-          nav('doctors') + '<main id="main">' +
-          hero('hero-doctors', 'Our doctors',
-               'Every scan is reported by a consultant specialist.') + cb + f"""
-<section class="section"><div class="container">
-  <div class="doc-grid">{cards}</div>
-</div></section>
-</main>""" + footer())
-
 # ================================================================ ABOUT
 def build_about():
     cb, cbld = crumbs([("/", "Home"), ("/about/", "About Us")])
     title = "About Us | Doctors Scans &amp; Labs"
     desc = (f"Doctors Scans & Labs is a diagnostic imaging and laboratory network with "
             f"{len(BRANCHES)} centres across Kollam, Thiruvananthapuram and Thrissur districts in Kerala.")
-    svc_line = ", ".join(s["name"] for s in SERVICES[:-1]) + " and " + SERVICES[-1]["name"]
-    write("about/index.html", head(title, desc, "/about/", cbld) +
+    doc_cards = "".join(doctor_card(d) for d in DOCTORS)
+    doc_ld = ",".join(f'{{"@type":"Physician","name":"{d["name"]}","medicalSpecialty":"{d["role"]}"}}'
+                      for d in DOCTORS)
+    schema = (f'<script type="application/ld+json">{{"@context":"https://schema.org",'
+              f'"@type":"ItemList","itemListElement":[{doc_ld}]}}</script>' + cbld)
+    write("about/index.html", head(title, desc, "/about/", schema) +
           nav('about') + '<main id="main">' +
           hero('hero-about', 'About us', 'Your health, our lifelong commitment.') + cb + f"""
 <section class="section">
   <div class="container narrow">
-    <h2>Who we are</h2>
-    <p class="lede">Doctors Scans &amp; Labs is a diagnostic imaging and laboratory network
-    operating {len(BRANCHES)} centres across Kollam, Thiruvananthapuram and Thrissur
-    districts. We are a unit of {LEGAL}.</p>
+    <h2>About Us</h2>
+    <p class="lede">We are a team of doctors who came together with a shared vision to
+    uplift healthcare in the rural and semi-urban communities of Kerala. What began as a
+    single diagnostic centre has grown into a network across multiple districts, bringing
+    advanced imaging, laboratory services and specialist expertise closer to the people
+    who need them.</p>
 
-    <p>Our main centre sits fifty metres from Paripally Government Medical College, and we
-    have since grown to Kadakkal, Chirayinkeezhu, Kottarakkara, Karunagappalli, Kottiyam and,
-    most recently, Chavakkad in Thrissur district. Each centre is placed close to a government
-    or taluk hospital, so that patients who need a scan or a test do not have to travel far to
-    get one.</p>
+    <p>Our centres are located close to government hospitals, helping patients access
+    reliable and affordable diagnostics without the need to travel long distances. With
+    modern technology, consultant radiologists, skilled healthcare professionals and a
+    strong focus on accurate and timely reporting, we are committed to making every
+    diagnostic experience more accessible, reassuring and patient-focused.</p>
 
-    <h2>What we offer</h2>
-    <p>Our services cover {svc_line}. CT scanning is available at our Parippally centre.
-    Every scan is reported by a consultant radiologist, and our fetal imaging work is led by
-    a radiologist with dedicated certification in fetal and advanced cardiac imaging.</p>
+    <p>When you need a scan or diagnostic test, you need more than a report &mdash; you
+    need confidence, clarity and care.</p>
 
-    <h2>How we work</h2>
-    <p>A scan can be an anxious thing to wait for. Our staff are trained to explain what is
-    about to happen, answer questions in plain language, and keep reporting times short so
-    that you are not left waiting longer than necessary.</p>
+    <p>Our vision is simple: bring the standards of advanced diagnostics closer to
+    everyone, because quality healthcare should be accessible to all, wherever they
+    live.</p>
+  </div>
+</section>
 
-    <p>We are open {HOURS_WEEK.lower()} and {HOURS_SUN.lower()}. Appointments can be made
-    directly on WhatsApp with the centre nearest you.</p>
+<section class="section section-alt" id="team">
+  <div class="container">
+    <div class="text-center-head">
+      <span class="eyebrow">Clinical Leadership</span>
+      <h2 class="section-title-lg">Our Team</h2>
+      <p class="section-lede-lg">Our team consists of Dedicated Radiologists &amp; Experienced
+      Doctors actively supporting &amp; working across our diagnostic centres.</p>
+    </div>
+    <div class="doc-grid">{doc_cards}</div>
+  </div>
+</section>
 
+<section class="section">
+  <div class="container narrow">
     <div class="cta-band">
       <h2>Book at your nearest centre</h2>
       <p>Pick a centre and message us on WhatsApp.</p>
@@ -836,7 +840,7 @@ def build_404():
   var p = decodeURIComponent(location.pathname).toLowerCase().replace(/\/+$/, "");
   if (MOVED[p]) {{ location.replace(MOVED[p]); return; }}
   if (p.indexOf("/services") === 0) {{ location.replace("/services/"); return; }}
-  var simple = {{"/packages": "/packages/", "/doctors": "/doctors/",
+  var simple = {{"/packages": "/packages/", "/doctors": "/about/#team",
                 "/about": "/about/", "/contact": "/contact/"}};
   if (simple[p]) {{ location.replace(simple[p]); }}
 }})();
@@ -859,7 +863,7 @@ def build_404():
 
 # ---------------------------------------------------------------- support files
 def build_support():
-    urls = ["/", "/services/", "/packages/", "/doctors/", "/branches/", "/blog/", "/about/", "/contact/"]
+    urls = ["/", "/services/", "/packages/", "/branches/", "/blog/", "/about/", "/contact/"]
     urls += [f"/services/{s['slug']}/" for s in SERVICES]
     urls += [f"/branches/{b['slug']}/" for b in BRANCHES]
     urls += [f"/blog/{p['slug']}/" for p in BLOG_POSTS]
@@ -873,7 +877,7 @@ def build_support():
     write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
 
     R = [("/Services/", "/services/"), ("/Packages/", "/packages/"),
-         ("/Doctors/", "/doctors/"), ("/About/", "/about/"), ("/Contact/", "/contact/")]
+         ("/Doctors/", "/about/"), ("/About/", "/about/"), ("/Contact/", "/contact/")]
     write("_redirects", "".join(f"{a}  {b}  301\n" for a, b in R) +
           "/header.html  /  301\n/footer.html  /  301\n")
 
@@ -919,7 +923,6 @@ if __name__ == "__main__":
     build_services_index()
     build_service_pages()
     build_packages()
-    build_doctors()
     build_about()
     build_branches_index()
     build_branch_pages()

@@ -302,7 +302,7 @@ img { max-width: 100%; height: auto; }
 .doc-photo { width: 88px; height: 88px; margin: 0 auto .75rem; border-radius: 50%; overflow: hidden; border: 2px solid rgba(2,132,199,.2); box-shadow: var(--shadow-sm); }
 .doc-photo img { width: 100%; height: 100%; object-fit: cover; }
 .doc-role { display: inline-block; background: var(--surface-cyan); color: var(--primary); font-family: var(--font-display); font-weight: 700; font-size: .62rem; padding: .18rem .6rem; border-radius: var(--radius-full); margin-bottom: .5rem; }
-.doc-card h3 { font-size: .92rem; margin-bottom: .2rem; }
+.doc-card h3 { font-size: .92rem; margin-bottom: .2rem; text-wrap: balance; }
 .doc-qual { font-size: .74rem; color: var(--primary); font-weight: 600; margin-bottom: .2rem; }
 .doc-sub { font-size: .68rem; color: #64748b; }
 
@@ -311,6 +311,7 @@ img { max-width: 100%; height: auto; }
 .branch-card {
   background: #fff; border: 1px solid var(--outline-soft); border-radius: var(--radius-xl);
   padding: 1.4rem; box-shadow: var(--shadow-sm); position: relative; transition: box-shadow .2s, transform .2s;
+  display: flex; flex-direction: column; height: 100%;
 }
 .branch-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
 .branch-card-flag { border: 2px solid rgba(2,132,199,.35); }
@@ -332,7 +333,7 @@ img { max-width: 100%; height: auto; }
 }
 .branch-call-chip .ic { width: .8rem; height: .8rem; color: var(--primary); }
 .branch-call-chip:hover { background: var(--primary); color: #fff; }
-.branch-actions { display: flex; flex-direction: column; gap: .5rem; }
+.branch-actions { display: flex; flex-direction: column; gap: .5rem; margin-top: auto; padding-top: 1rem; }
 
 /* ---------------------------------------------------------------- service detail / contact block */
 .svc-book { }
