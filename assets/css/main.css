@@ -447,13 +447,19 @@ img { max-width: 100%; height: auto; }
 }
 
 /* ---------------------------------------------------------------- blog */
-.blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.4rem; }
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 1.4rem; }
 .blog-card {
   background: #fff; border: 1px solid var(--outline-soft); border-radius: var(--radius-xl);
   box-shadow: var(--shadow-sm); transition: box-shadow .2s, transform .2s; overflow: hidden;
 }
 .blog-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
-.blog-card-link { display: block; padding: 1.4rem; color: inherit; }
+.blog-card-link { display: flex; flex-direction: column; height: 100%; color: inherit; }
+.blog-card-img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.blog-card-body { display: flex; flex-direction: column; flex-grow: 1; padding: 1.4rem; }
+.blog-card-body p { flex-grow: 1; }
+.blog-card-body .pkg-cat { align-self: flex-start; }
+.blog-read { display: inline-flex; align-items: center; gap: .35rem; font-family: var(--font-display); font-weight: 700; font-size: .85rem; color: var(--primary); }
+.blog-card:hover .blog-read { color: var(--primary-dark); }
 .blog-card-link:hover { color: inherit; }
 .blog-card h2 { font-size: 1.08rem; margin: .6rem 0 .5rem; }
 .blog-card p { font-size: .87rem; color: var(--on-surface-var); margin-bottom: .8rem; }
@@ -482,8 +488,8 @@ img { max-width: 100%; height: auto; }
 .blog-article ul { padding-left: 1.2rem; margin-bottom: 1rem; }
 .blog-article li { margin-bottom: .35rem; }
 .blog-article li strong { color: var(--navy-dark); }
-.blog-article a:not(.btn) { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
-.blog-article a:not(.btn):hover { color: var(--primary-dark); }
+.blog-article a:not(.btn) { color: var(--primary); text-decoration: none; }
+.blog-article a:not(.btn):hover { color: var(--primary-dark); text-decoration: underline; text-underline-offset: 2px; }
 .blog-aside { display: flex; flex-direction: column; gap: 1.25rem; }
 @media (min-width: 992px) { .blog-aside { position: sticky; top: 6.5rem; } }
 .blog-aside-card {
